@@ -1,0 +1,85 @@
+.calendar {
+    $base-dark: #0000001c;
+    font-size: 1rem;
+    margin: 20px auto 0;
+    min-width: 704px;
+    max-width: 920px;
+    padding: 0 16px;
+    position: relative;
+    .month-label {
+        display: flex;
+        min-width: 701px;
+        justify-content: center;
+        border-top: 1px solid $base-dark;
+        border-left: 1px solid $base-dark;
+        border-right: 1px solid $base-dark;
+        border-radius: 5px 5px 0px 0px;
+        padding: 1rem 0;
+        font-size: 2rem;
+    }
+    .month-control {
+        display: flex;
+        min-width: 701px;
+        border-bottom: 1px solid $base-dark;
+        border-left: 1px solid $base-dark;
+        border-right: 1px solid $base-dark;
+        border-radius: 0px 0px 5px 5px;
+        padding: 1rem;
+        justify-content: space-between;
+        div {
+            cursor: pointer;
+            border-bottom: 1px solid white;
+            &:hover {
+                border-bottom: 1px solid black;
+            }
+        }
+    }
+    .calendar-table {
+        width: 100%;
+        border: 1px solid $base-dark;
+        .weekdays {
+            border-bottom: 1px solid $base-dark;
+            .weekday {
+              border-right: 1px solid $base-dark;
+              padding: 1rem 0;
+              font-size: 1.2rem;
+            }
+        }
+        .week-row {
+            border-bottom: 1px solid $base-dark;
+            .blurred-date {
+                color: #0000004d;
+                &:hover {
+                    .actions {
+                        display: none!important;
+                    }
+                }
+            }
+            .date {
+                position: relative;
+                border-right: 1px solid $base-dark;
+                text-align: right;
+                height: 80px;
+                min-width: 100px;
+                padding: 1rem;
+                cursor: pointer;
+                transition: all 0.2s;
+                &:hover {
+                    background-color: #0f9fe054!important;
+                    .actions {
+                        display: block;
+                    }
+                }
+                &:first-child {
+                    background-color: #8080804d;
+                }
+                &:last-child {
+                    background-color: #8080804d;
+                }
+            }
+            .active-date {
+                background: #fac8638c!important;
+            }
+        }
+    }
+}
