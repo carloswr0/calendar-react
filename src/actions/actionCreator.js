@@ -2,6 +2,7 @@ export const ADD_REMINDER = 'ADD_REMINDER';
 export const EDIT_REMINDER = 'EDIT_REMINDER';
 export const DELETE_REMINDER = 'DELETE_REMINDER';
 export const DELETE_ALL_REMINDER = 'DELETE_ALL_REMINDER';
+export const DELETE_ALL_DAY_REMINDER = 'DELETE_ALL_DAY_REMINDER';
 
 export function addReminder(date, reminder, time, city, color) {
   return {
@@ -25,16 +26,23 @@ export function editReminder(date, reminder, time, city, color) {
   }
 }
 
-export function deleteReminder(date, reminder) {
+export function deleteReminder(date, reminderIndex) {
   return {
     type: DELETE_REMINDER,
     date,
-    reminder,
+    reminderIndex,
   }
 }
 
 export function deleteAllReminders() {
   return {
     type: DELETE_ALL_REMINDER,
+  }
+}
+
+export function deleteAllDayReminders(date) {
+  return {
+    type: DELETE_ALL_DAY_REMINDER,
+    date,
   }
 }

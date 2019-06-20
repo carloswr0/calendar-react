@@ -8,7 +8,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,.15);
     top: 35%;
     left: 5%;
-    .header {
+    .header, .footer {
         padding: 3px 2px;
         background-color: lightgray;
         display: flex;
@@ -36,10 +36,13 @@
                 &:hover {
                     border-bottom: 1px solid black;
                 }
+                &:last-child {
+                    margin-left: 1rem;
+                }
             }
         }
         .reminder-stripe {
-            padding: 3px;
+            padding: 1rem;
             border-radius: 3px;
             display: flex;
             position: relative;
@@ -47,7 +50,7 @@
             flex-direction: column;
             margin-bottom: 5px;
             &:hover .actions {
-                display: block;
+                display: block!important;
             }
         }
         b {

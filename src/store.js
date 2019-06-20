@@ -6,16 +6,50 @@ import rootReducer from './reducers/index';
 
 const defaultstate = {
   reminders: [{
-    "reminder": "Recuerda",
+    "reminder": "Recuerda los bollos",
     "date": {
-      "date": 7,
+      "date": 17,
+      "month": 5,
+      "year": 2019
+    },
+    "time": "16:00",
+    "city": "Los Angeles",
+    "color": "#ff69b4"
+  },
+  {
+    "reminder": "Nunca te rindas",
+    "date": {
+      "date": 17,
       "month": 5,
       "year": 2019
     },
     "time": "13:00",
-    "city": "Los Angeles",
-    "color": "#ff69b4"
-  }],
+    "city": "California",
+    "color": "#807dc7"
+  },
+  {
+    "reminder": "Toma las llaves",
+    "date": {
+      "date": 17,
+      "month": 5,
+      "year": 2019
+    },
+    "time": "14:00",
+    "city": "San Diego",
+    "color": "#3bdda5"
+  }
+,{
+  "reminder": "Revisa el clima",
+  "date": {
+    "date": 9,
+    "month": 5,
+    "year": 2019
+  },
+  "time": "3:00",
+  "city": "Juarez",
+  "color": "#afba02"
+}],
+  
 };
 
 // Creates the store with our reducers and default state
