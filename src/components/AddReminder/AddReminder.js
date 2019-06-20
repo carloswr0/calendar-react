@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { months, cities } from '../../shared/data';
 import './AddReminder.scss';
-import { months } from '../../shared/data';
 
 class AddReminder extends Component { 
   constructor(props) {
@@ -51,17 +51,18 @@ class AddReminder extends Component {
         <div className="content">
           <form>
             <label>Reminder</label>
-            <input name="description" maxLength="30" type="text" onChange={(e) => this.handleInputChange(e)} value={this.state.description}></input>
-            
+            <input name="description" maxLength="30" type="text" placeholder="Enter a reminder" onChange={(e) => this.handleInputChange(e)} value={this.state.description}></input>        
             <label>Time</label>
-            <input name="time" type="time" onChange={(e) => this.handleInputChange(e)} value={this.state.time}></input>
-            
+            <input name="time" type="time" onChange={(e) => this.handleInputChange(e)} value={this.state.time}></input>            
             <label>City:</label>
             <select name="city" value={this.state.city} onChange={(e) => this.handleInputChange(e)}>
-              <option value={'Los Angeles'}>Los Angeles</option>
-              <option value={'California'}>California</option>
+              <option value="">Select a city</option>
+              {
+                cities.map((city,i) => {
+                  return <option key={i} value={city}>{city}</option>
+                })
+              }
             </select>
-
             <label>Color</label>
             <input name="color" type="color" value={this.state.color} onChange={(e) => this.handleInputChange(e)}></input>
             <button onClick={(e) => this.onSubmitReminder(e)}>Add Reminder</button>

@@ -5,7 +5,17 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers/index';
 
 const defaultstate = {
-  reminders: [],
+  reminders: [{
+    "reminder": "Recuerda",
+    "date": {
+      "date": 7,
+      "month": 5,
+      "year": 2019
+    },
+    "time": "13:00",
+    "city": "Los Angeles",
+    "color": "#ff69b4"
+  }],
 };
 
 // Creates the store with our reducers and default state

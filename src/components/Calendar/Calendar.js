@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Calendar.scss';
 import { weekdays, months } from '../../shared/data';
-import DateCell from '../Date/DateCell';
+import DateCell from '../DateCell/DateCell';
 import AddReminder from '../AddReminder/AddReminder';
+import DateDetails from '../DateDetails/DateDetails';
 
 class Calendar extends Component { 
   constructor(props) {
@@ -15,8 +16,11 @@ class Calendar extends Component {
       previousMonthDays: null,
       addReminderToggle: false,
       reminderArguments: null,
+      showDateDetails: false,
+      dateDetailsArguments: null,
     };
     this.toggleReminderModal = this.toggleReminderModal.bind(this);
+    this.toggleDateDetails = this.toggleDateDetails.bind(this);
   } 
 
   componentWillMount() {
@@ -33,6 +37,7 @@ class Calendar extends Component {
   }
 
   toggleReminderModal(date, month, year) {
+    //TODO: Refactor to RE USE this function.
     if(date && month && year){
       this.setState((state) => ({
         addReminderToggle: !state.addReminderToggle,
@@ -42,6 +47,21 @@ class Calendar extends Component {
       this.setState({
         addReminderToggle: false,
         reminderArguments: null,
+      });
+    }
+  }
+ 
+  toggleDateDetails(date, month, year) {
+    //TODO: Refactor to RE USE this function.
+    if(date && month && year){
+      this.setState((state) => ({
+        showDateDetails: !state.showDateDetails,
+        dateDetailsArguments: !state.dateDetailsArguments ? {date, month, year} : null,
+      }));
+    } else {
+      this.setState({
+        showDateDetails: false,
+        dateDetailsArguments: null,
       });
     }
   }
@@ -68,6 +88,7 @@ class Calendar extends Component {
       currentYear: state.currentMonth > 10 ? state.currentYear + 1 : state.currentYear,
     }));
     this.setGetDaysInMonth();
+    this.toggleReminderModal();
   }
 
   previousMonth() {
@@ -76,6 +97,7 @@ class Calendar extends Component {
       currentYear: state.currentMonth < 1 ? state.currentYear - 1 : state.currentYear,
     }));
     this.setGetDaysInMonth();
+    this.toggleReminderModal();
   }
 
   createCalendar = () => {
@@ -90,46 +112,46 @@ class Calendar extends Component {
     let previousDays = (this.state.previousMonthDays - firstDay);
     let nextDays = 1;
 
-    let calendar = [];
+    const calendar = [];
     // Outer for to create week table rows
     let date = 1;
     for (let i = 0; i < 6; i++) {
-      let weekRow = [];
+      const weekRow = [];
       //Inner for to create weekdays cells
       for (let j = 0; j < 7; j++) {
+        const toProp = {
+          key: `${i}-${j}`, 
+        };
         if (i === 0 && j < firstDay) {
           previousDays++;
-          weekRow.push(<DateCell key={`${i}-${j}`} 
-            styleModifier="blurred-date"
-            date={previousDays} 
-          />);
+          toProp.styleModifier = "blurred-date";
+          toProp.day = previousDays;
         } else if (date > this.state.daysInMonth) {
-          weekRow.push(<DateCell key={`${i}-${j}`} 
-            styleModifier="blurred-date"
-            date={nextDays} 
-          />);
+          toProp.styleModifier = "blurred-date";
+          toProp.day = nextDays;
           nextDays++;
         } else {
           if (date === this.state.currentDay && month === this.state.currentMonth && year === this.state.currentYear) {
-            weekRow.push(<DateCell key={`${i}-${j}`} 
-              styleModifier="active-date" 
-              date={date} 
-              year={this.state.currentYear} 
-              month={this.state.currentMonth} 
-              toggleReminderModal={this.toggleReminderModal}
-              {...this.props} 
-            />);
+            toProp.styleModifier = "active-date";
+            toProp.day = date;
+            toProp.year = this.state.currentYear;
+            toProp.month = this.state.currentMonth;
+            toProp.storeProps = this.props;
+            toProp.toggleReminderModal = this.toggleReminderModal;
+            toProp.toggleDateDetails = this.toggleDateDetails;
           } else {
-            weekRow.push(<DateCell key={`${i}-${j}`} 
-              styleModifier="" date={date} 
-              year={this.state.currentYear} 
-              month={this.state.currentMonth} 
-              toggleReminderModal={this.toggleReminderModal}
-              {...this.props} 
-            />);
+            toProp.styleModifier = "";
+            toProp.day = date;
+            toProp.year = this.state.currentYear;
+            toProp.month = this.state.currentMonth;
+            toProp.storeProps = this.props;
+            toProp.toggleReminderModal = this.toggleReminderModal;
+            toProp.toggleDateDetails = this.toggleDateDetails;
           }
           date++;
         }
+        const newCell = <DateCell {...toProp}></DateCell>
+        weekRow.push(newCell);
       }
       //Adding weekRows to calentar node array.
       calendar.push(<tr key={i} className="week-row">{weekRow}</tr>)
@@ -161,6 +183,7 @@ class Calendar extends Component {
           </table>
           <div className="month-control">
               <div onClick={() => this.previousMonth()}>Previous</div>
+              <div onClick={() => this.props.deleteAllReminders()} className="delete-all">Delete all reminders.</div>
               <div onClick={() => this.nextMonth()}>Next</div>
           </div>
         </div>
@@ -169,6 +192,14 @@ class Calendar extends Component {
           <AddReminder 
             date={this.state.reminderArguments} 
             toggleReminderModal={this.toggleReminderModal}
+            {...this.props}
+          /> : null
+        }
+         {
+          this.state.showDateDetails ? 
+          <DateDetails 
+            date={this.state.dateDetailsArguments} 
+            toggleDateDetails={this.toggleDateDetails}
             {...this.props}
           /> : null
         }

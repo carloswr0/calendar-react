@@ -1,0 +1,61 @@
+.date-details {
+    $base-dark: #0000001c;
+    position: absolute;
+    background-color: white;
+    width: 250px;
+    height: auto;
+    border: 1px solid $base-dark;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+    top: 35%;
+    left: 5%;
+    .header {
+        padding: 3px 2px;
+        background-color: lightgray;
+        display: flex;
+        justify-content: space-between;
+        span:last-child {
+            cursor: pointer;
+            border-bottom: 1px solid lightgray;
+            &:hover {
+                border-bottom: 1px solid black;
+            }
+        }
+    }
+    .content {
+        padding: 5px 5px 0px 5px;
+        
+        .actions {
+            flex-direction: row;
+            display: none;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            span {
+                cursor: pointer;
+                border-bottom: 1px solid transparent;
+                &:hover {
+                    border-bottom: 1px solid black;
+                }
+            }
+        }
+        .reminder-stripe {
+            padding: 3px;
+            border-radius: 3px;
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-bottom: 5px;
+            &:hover .actions {
+                display: block;
+            }
+        }
+        b {
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        .stripe {
+            flex-direction: row;
+        }
+    }
+}

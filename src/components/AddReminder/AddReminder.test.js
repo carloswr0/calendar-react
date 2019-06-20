@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Calendar from './Calendar';
+import AddReminder from './AddReminder';
 
-it('renders without crashing', () => {
+it('Test: Reminder max-length are 30 chars', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Calendar />, div);
+  ReactDOM.render(<AddReminder />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

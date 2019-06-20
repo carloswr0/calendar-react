@@ -33,6 +33,12 @@
                 border-bottom: 1px solid black;
             }
         }
+        .delete-all {
+            color: red;
+            &:hover {
+                border-color: red;
+            }
+        }
     }
     .calendar-table {
         width: 100%;
@@ -61,6 +67,8 @@
                 text-align: right;
                 height: 80px;
                 min-width: 100px;
+                max-width: 150px;
+                max-height: 100px;
                 padding: 1rem;
                 cursor: pointer;
                 transition: all 0.2s;

@@ -27,8 +27,7 @@ function reminders(state = [], action) {
       return state;
 
     case DELETE_ALL_REMINDER:
-      console.log(DELETE_ALL_REMINDER);
-      return state;
+      return [];
     
     default:
       return state;   

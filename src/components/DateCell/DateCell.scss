@@ -1,0 +1,26 @@
+.date {
+    .actions {
+        display: none;
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        text-decoration: underline;
+        font-size: 0.8rem;
+    }
+    .reminder-list {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        div {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            padding: 3px;
+            border-radius: 3px;
+            margin-top: 2px;
+            b {
+                font-weight: bold;
+            }
+        }
+    }
+}
