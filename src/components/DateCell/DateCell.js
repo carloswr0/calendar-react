@@ -1,5 +1,6 @@
 import React from 'react';
 import './DateCell.scss';
+import { compareTime } from '../../shared/functions';
 var _ = require('lodash');
 
 const DateCell = props => { 
@@ -7,8 +8,8 @@ const DateCell = props => {
     if(props.year && props.month) {
       props.toggleReminderModal(day, month, year);
     };
- 
   }
+  
   const { day, month, year, styleModifier } = props;
   const todaysDate = {
     date: day,
@@ -24,7 +25,7 @@ const DateCell = props => {
     })
   }
   return(
-    <td className={`date ${styleModifier}`} onClick={() => props.toggleDateDetails(day, month, year)}>
+    <td className={`date ${styleModifier}`} onClick={() => {props.toggleDateDetails && props.toggleDateDetails(day, month, year)}}>
       <span className="actions" onClick={(e) => {e.stopPropagation(); handleAddReminder(day, month, year)}}>
         Add
       </span>
@@ -32,7 +33,7 @@ const DateCell = props => {
         {props.day}
       </span>
       <div className="reminder-list">
-        {remindersToRender.slice(0, 3).map((reminder, i) => {
+        {remindersToRender.slice(0, 3).sort(compareTime).map((reminder, i) => {
           return <div key={i} style={{backgroundColor: reminder.color}}><b>{reminder.time}</b>{reminder.reminder}</div>
         })}
         {

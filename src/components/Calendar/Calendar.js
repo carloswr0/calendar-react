@@ -3,6 +3,7 @@ import './Calendar.scss';
 import { weekdays, months } from '../../shared/data';
 import DateCell from '../DateCell/DateCell';
 import AddReminder from '../AddReminder/AddReminder';
+import EditReminder from '../EditReminder/EditReminder';
 import DateDetails from '../DateDetails/DateDetails';
 
 class Calendar extends Component { 
@@ -18,9 +19,12 @@ class Calendar extends Component {
       reminderArguments: null,
       showDateDetails: false,
       dateDetailsArguments: null,
+      editMode: false,
+      editArguments: null,
     };
     this.toggleReminderModal = this.toggleReminderModal.bind(this);
     this.toggleDateDetails = this.toggleDateDetails.bind(this);
+    this.toggleEditMode = this.toggleEditMode.bind(this);
   } 
 
   componentWillMount() {
@@ -50,6 +54,21 @@ class Calendar extends Component {
       });
     }
   }
+
+  toggleEditMode(reminder, date, index) {
+    //TODO: Refactor to RE USE this function.
+    if(reminder && this.state.editMode === false){
+      this.setState((state) => ({
+        editMode: !state.editMode,
+        editArguments: !state.editMode ? {reminder, date, index} : null,
+      }));
+    } else {
+      this.setState({
+        editMode: false,
+        editArguments: null,
+      });
+    }
+  }
  
   toggleDateDetails(date, month, year) {
     //TODO: Refactor to RE USE this function.
@@ -57,11 +76,13 @@ class Calendar extends Component {
       this.setState((state) => ({
         showDateDetails: !state.showDateDetails,
         dateDetailsArguments: !state.dateDetailsArguments ? {date, month, year} : null,
+        editMode: false,
       }));
     } else {
       this.setState({
         showDateDetails: false,
         dateDetailsArguments: null,
+        editMode: false,
       });
     }
   }
@@ -195,11 +216,20 @@ class Calendar extends Component {
             {...this.props}
           /> : null
         }
-         {
+        {
           this.state.showDateDetails ? 
           <DateDetails 
             date={this.state.dateDetailsArguments} 
             toggleDateDetails={this.toggleDateDetails}
+            toggleEditMode={this.toggleEditMode}
+            {...this.props}
+          /> : null
+        }
+        {
+          this.state.editMode ?
+          <EditReminder
+            editArguments={this.state.editArguments} 
+            toggleEditMode={this.toggleEditMode}
             {...this.props}
           /> : null
         }

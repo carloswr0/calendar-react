@@ -9,7 +9,6 @@ var _ = require('lodash');
 
 function reminders(state = [], action) {
   switch(action.type) {
-    
     case ADD_REMINDER:
       const reminder = {
         reminder: action.reminder,
@@ -23,8 +22,26 @@ function reminders(state = [], action) {
       ];
 
     case EDIT_REMINDER:
-      console.log(EDIT_REMINDER);
-      return state;
+      const reminder_edit = {
+        reminder: action.reminder,
+        date: action.date,
+        time: action.time,
+        city: action.city,
+        color: action.color,
+      };
+      const remindersOfThisDay_edit = [];
+      const remindersOfOtherDays_edit = [];
+      state.map(reminder => {
+        if(_.isEqual(reminder.date, action.date)) {
+          remindersOfThisDay_edit.push(reminder);
+        } else {
+          remindersOfOtherDays_edit.push(reminder);
+        };
+        return 0; 
+      });
+      remindersOfThisDay_edit.sort(compareTime).splice(action.reminderIndex, 1); 
+      remindersOfThisDay_edit.push(reminder_edit);
+      return [...remindersOfThisDay_edit, ...remindersOfOtherDays_edit];
 
     case DELETE_REMINDER:
       const remindersOfThisDay = [];

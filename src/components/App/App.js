@@ -8,6 +8,7 @@ import Calendar from '../Calendar/Calendar';
 export function mapStateToProps(state) {
   return {
     reminders: state.reminders,
+    weather: state.weather,
   };
 }
 

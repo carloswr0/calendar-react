@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import AddReminder from './AddReminder';
 
-it('Test: Reminder max-length are 30 chars', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<AddReminder />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('<AddReminder />', () => {
+  it('Test: Reminder max-length are 30 chars', () => {
+    const addReminder = shallow(<AddReminder />);
+    expect(editor.find())
+    
+    ReactDOM.unmountComponentAtNode(div);
+  });
+})

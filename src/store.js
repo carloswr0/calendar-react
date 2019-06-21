@@ -13,43 +13,43 @@ const defaultstate = {
       "year": 2019
     },
     "time": "16:00",
-    "city": "Los Angeles",
+    "city": "Aberdeen",
     "color": "#ff69b4"
-  },
-  {
-    "reminder": "Nunca te rindas",
+    },
+    {
+      "reminder": "Nunca te rindas",
+      "date": {
+        "date": 17,
+        "month": 5,
+        "year": 2019
+      },
+      "time": "13:00",
+      "city": "Abilene",
+      "color": "#807dc7"
+    },
+    {
+      "reminder": "Toma las llaves",
+      "date": {
+        "date": 17,
+        "month": 5,
+        "year": 2019
+      },
+      "time": "14:00",
+      "city": "Akron",
+      "color": "#3bdda5"
+    }
+  ,{
+    "reminder": "Revisa el clima",
     "date": {
-      "date": 17,
+      "date": 9,
       "month": 5,
       "year": 2019
     },
-    "time": "13:00",
-    "city": "California",
-    "color": "#807dc7"
-  },
-  {
-    "reminder": "Toma las llaves",
-    "date": {
-      "date": 17,
-      "month": 5,
-      "year": 2019
-    },
-    "time": "14:00",
-    "city": "San Diego",
-    "color": "#3bdda5"
-  }
-,{
-  "reminder": "Revisa el clima",
-  "date": {
-    "date": 9,
-    "month": 5,
-    "year": 2019
-  },
-  "time": "3:00",
-  "city": "Juarez",
-  "color": "#afba02"
-}],
-  
+    "time": "3:00",
+    "city": "Juarez",
+    "color": "#afba02"
+  }],
+  weather: [],
 };
 
 // Creates the store with our reducers and default state
