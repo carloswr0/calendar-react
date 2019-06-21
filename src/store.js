@@ -48,6 +48,36 @@ const defaultstate = {
     "time": "3:00",
     "city": "Juarez",
     "color": "#afba02"
+  },{
+    "reminder": "saca la basura",
+    "date": {
+      "date": 17,
+      "month": 5,
+      "year": 2019
+    },
+    "time": "3:00",
+    "city": "California",
+    "color": "#afba02"
+  },{
+    "reminder": "haz ejercicio",
+    "date": {
+      "date": 22,
+      "month": 5,
+      "year": 2019
+    },
+    "time": "3:00",
+    "city": "San Diego",
+    "color": "#afba02"
+  },{
+    "reminder": "Escribe los unit testing",
+    "date": {
+      "date": 23,
+      "month": 5,
+      "year": 2019
+    },
+    "time": "3:00",
+    "city": "Washington",
+    "color": "#afba02"
   }],
   weather: [],
 };
